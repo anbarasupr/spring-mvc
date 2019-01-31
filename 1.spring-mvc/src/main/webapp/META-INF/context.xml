@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Context>
+	<!--<Realm className="org.apache.catalina.realm.JAASRealm" appName="JAASLogin" 
+		userClassNames="com.jaas.UserPrincipal" roleClassNames="com.jaas.RolePrincipal"/> -->
+
+	<!--<Realm className="org.apache.catalina.realm.JDBCRealm" driverName="com.mysql.jdbc.Driver" 
+		connectionURL="jdbc:mysql://localhost:3306/tomcat_realm" connectionName="root" 
+		connectionPassword="root" userTable="tomcat_users" userNameCol="user_name" 
+		userCredCol="password" userRoleTable="tomcat_users_roles" roleNameCol="role_name" 
+		/> -->
+
+	<!-- <Realm className="org.apache.catalina.realm.JDBCRealm" driverName="org.gjt.mm.mysql.Driver" 
+		connectionURL="jdbc:mysql://localhost/authority?user=root&amp;password=root" 
+		userTable="users" userNameCol="user_name" userCredCol="user_pass" userRoleTable="user_roles" 
+		roleNameCol="role_name" /> -->
+
+	<!-- JNDI REALM -->
+
+	<Resource name="jdbc/authority" auth="Container" type="javax.sql.DataSource"
+		maxActive="100" maxIdle="30" maxWait="10000" username="root"
+		password="root" driverClassName="com.mysql.jdbc.Driver"
+		url="jdbc:mysql://localhost:3306/authority" />
+		
+	<Realm className="org.apache.catalina.realm.DataSourceRealm"
+	   dataSourceName="jdbc/authority"
+	   userTable="users" userNameCol="user_name" userCredCol="user_pass"
+	   userRoleTable="user_roles" roleNameCol="role_name"/>
+
+</Context>
